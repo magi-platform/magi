@@ -1,2 +1,5 @@
+distro/*.tar.gz
 distro/*.tgz
+distro/*.zip
+
 .DS_Store
