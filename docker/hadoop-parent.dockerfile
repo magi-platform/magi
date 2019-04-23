@@ -21,5 +21,3 @@ COPY conf/hdfs/core-site.xml /opt/hadoop/etc/hadoop/core-site.xml
 COPY conf/hdfs/hdfs-site.xml /opt/hadoop/etc/hadoop/hdfs-site.xml
 
 USER hadoop
-
-CMD /opt/hadoop/bin/hdfs version

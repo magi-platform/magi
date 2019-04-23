@@ -16,5 +16,10 @@ build-base:
 build-hadoop:
 	docker build -f docker/hadoop-parent.dockerfile -t reynoldsm88/hadoop-parent:latest .
 	docker build -f docker/hdfs-namenode.dockerfile -t reynoldsm88/hdfs-namenode:latest .
+	docker build -f docker/hdfs-datanode.dockerfile -t reynoldsm88/hdfs-datanode:latest .
 
 build: build-base build-hadoop
+
+run-hadoop:
+	docker run -d -p 50070:50070 -p 50470:50470 -p 9000:9000 reynoldsm88/hdfs-namenode:latest
+	docker run -d -p 50075:50075 -p 50475:50475 -p 50010:50010 -p 50020:50020 reynoldsm88/hdfs-datanode:latest
