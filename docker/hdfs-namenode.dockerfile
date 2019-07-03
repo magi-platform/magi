@@ -2,6 +2,8 @@ FROM reynoldsm88/hadoop-parent:latest
 
 LABEL maintainer="reynoldsm88@gmail.com"
 
+USER hadoop
+
 ENV NAME_NODE_DIR /etc/hadoop/hdfs/namenode
 
 RUN mkdir -p $NAME_NODE_DIR
