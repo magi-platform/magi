@@ -8,7 +8,9 @@ ENV HADOOP_HOME /opt/hadoop
 USER root
 
 # ssh stuff for passwordless login between masters and workers, don't really care too much about security ATM
-RUN yum install -y openssh-server
+RUN yum install -y openssh-server && \
+    yum install -y openssh && \
+    yum install -y openssh-clients
 
 ADD conf/ssh /root/.ssh
 
