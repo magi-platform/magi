@@ -1,3 +1,7 @@
+IMAGE_PREFIX = reynoldsm88/
+IMAGE_NAME = magi
+IMG := $(IMAGE_PREFIX)$(IMAGE_NAME)
+
 info:
 	echo "Available targets are 'clean', 'prune', 'killall', 'build-base', & 'build-hadoop'"
 
@@ -16,7 +20,7 @@ build-base:
 build-hadoop:
 	docker build -f docker/hadoop-parent.dockerfile -t reynoldsm88/hadoop-parent:latest .
 	docker build -f docker/hdfs-namenode.dockerfile -t reynoldsm88/hdfs-namenode:latest .
-	docker build -f docker/hdfs-datanode.dockerfile -t reynoldsm88/hdfs-datanode:latest .
+	#docker build -f docker/hdfs-datanode.dockerfile -t reynoldsm88/hdfs-datanode:latest .
 
 build: build-base build-hadoop
 

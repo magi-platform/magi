@@ -1,33 +1,20 @@
-
-version: "3.7"
+version: "3"
 services:
   hdfs-namenode:
-    image: reynoldsm88/hdfs-namenode:latest
-    hostname: hdfs.namenode
+    container_name: namenode
+    image: reynoldsm88/hadoop-parent:latest
+    hostname: namenode
     ports:
       - "9000:9000"
       - "50070:50070"
       - "50470:50470"
-    networks:
-      - magi
-    network_mode: "bridge"
-    deploy:
-      replicas: 1
   
   hdfs-datanode:
-    image: reynoldsm88/hdfs-datanode:latest
+    container_name: datanode
+    hostname: datanode
+    image: reynoldsm88/hadoop-parent:latest
     ports:
       - "50075:50075"
       - "50475:50475"
       - "50010:50010" 
       - "50020:50020"
-    networks:
-      - magi
-    network_mode: "bridge"  
-    deploy:
-      replicas: 1
-networks:
-  magi:
-
-#volumes:
-#  db-data:
