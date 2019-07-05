@@ -1,4 +1,4 @@
-FROM reynoldsm88/hadoop-parent:latest
+FROM reynoldsm88/hdfs-parent:latest
 
 LABEL maintainer="reynoldsm88@gmail.com"
 
