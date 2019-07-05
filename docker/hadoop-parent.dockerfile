@@ -1,4 +1,4 @@
-FROM reynoldsm88/centos-jdk8:latest
+FROM reynoldsm88/centos-jdk:latest
 
 LABEL maintainer="reynoldsm88@gmail.com"
 
@@ -10,7 +10,12 @@ USER root
 # ssh stuff for passwordless login between masters and workers, don't really care too much about security ATM
 RUN yum install -y openssh-server && \
     yum install -y openssh && \
-    yum install -y openssh-clients
+    yum install -y openssh-clients && \
+    mkdir -p /etc/ssh && \
+    cp ~/.ssh/id_rsa /etc/ssh/ssh_host_rsa_key && \
+    cp ~/.ssh/id_ecdsa /etc/ssh/ssh_host_ecdsa_key && \
+    cp ~/.ssh/id_ed25519 /etc/ssh/ssh_host_ed25519_key && \
+    sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
 
 ADD conf/ssh /root/.ssh
 

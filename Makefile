@@ -3,7 +3,7 @@ IMAGE_NAME = magi
 IMG := $(IMAGE_PREFIX)$(IMAGE_NAME)
 
 info:
-	echo "Available targets are 'clean', 'prune', 'killall', 'build-base', & 'build-hadoop'"
+	@echo "Available targets are 'clean', 'prune', 'killall', 'build-base', & 'build-hadoop' && 'build-all'"
 
 clean:
 	docker images | awk '{print $$3}' | grep -v IMAGE | xargs docker rmi -f
@@ -22,4 +22,4 @@ build-hadoop:
 	docker build -f docker/hdfs-namenode.dockerfile -t reynoldsm88/hdfs-namenode:latest .
 	docker build -f docker/hdfs-datanode.dockerfile -t reynoldsm88/hdfs-datanode:latest .
 
-build: build-base build-hadoop
+build-all: build-base build-hadoop
