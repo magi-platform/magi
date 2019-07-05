@@ -4,6 +4,8 @@ LABEL maintainer="reynoldsm88@gmail.com"
 
 USER root
 
+RUN mkdir -p /opt/app/{data,tmp}
+
 # ssh stuff for passwordless login between masters and workers, don't really care too much about security ATM
 # 
 # !!! NOTE !!! - Since this environment is currently only to support an easy
@@ -21,6 +23,11 @@ RUN yum install -y openssh-server && \
     cp ~/.ssh/id_ecdsa /etc/ssh/ssh_host_ecdsa_key && \
     cp ~/.ssh/id_ed25519 /etc/ssh/ssh_host_ed25519_key && \
     sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-    chown -R root:root /etc/ssh/*
+    chown -R root:root /etc/ssh/* && \
+    chmod -R 400 /etc/ssh && \
+    chmod -R 400 /root/.ssh && \
+    cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 
-CMD /usr/sbin/sshd -D
+EXPOSE 22
+
+CMD /usr/sbin/sshd

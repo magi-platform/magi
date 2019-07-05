@@ -22,4 +22,4 @@ build-hdfs:
 build-hbase:
 	docker build -f docker/hbase-parent.dockerfile -t reynoldsm88/hbase-parent:latest .
 
-build-all: build-parent build-hdfs build-hbase
+build-all: build-parent build-hdfs # build-hbase
