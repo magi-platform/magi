@@ -3,23 +3,24 @@
 
     <property>
         <name>hbase.tmp.dir</name>
-        <value>${java.io.tmpdir}/hbase-${user.name}</value>
+        <value>/opt/app/tmp</value>
     </property>
 
     <property>
         <name>hbase.rootdir</name>
-        <value>${hbase.tmp.dir}/hbase</value>
+        <value>hdfs://namenode:9000/hbase</value>
     </property>
 
     <property>
         <name>hbase.cluster.distributed</name>
-        <value>false</value>
+        <value>true</value>
     </property>
 
     <property>
         <name>hbase.zookeeper.quorum</name>
-        <value>localhost</value>
+        <value>zookeeper</value>
     </property>
+
     <!--The above are the important configurations for getting hbase up
       and running -->
 
@@ -30,7 +31,7 @@
 
     <property>
         <name>hbase.local.dir</name>
-        <value>${hbase.tmp.dir}/local/</value>
+        <value>/opt/app/data/hbase</value>
     </property>
 
     <!--Master configurations-->
@@ -70,8 +71,9 @@
     </property>
 
     <property>
-    <name>hbase.master.infoserver.redirect</name>
-    <value>true</value>
+        <name>hbase.master.infoserver.redirect</name>
+        <value>true</value>
+    </property>
 
     <property>
         <name>hbase.master.fileSplitTimeout</name>
@@ -81,12 +83,12 @@
     <!--RegionServer configurations-->
     <property>
         <name>hbase.regionserver.port</name>
-        <value>16020</value>
+        <value>60020</value>
     </property>
 
     <property>
         <name>hbase.regionserver.info.port</name>
-        <value>16030</value>
+        <value>60030</value>
     </property>
 
     <property>
@@ -321,7 +323,6 @@
     <property>
         <name>hbase.client.localityCheck.threadPoolSize</name>
         <value>2</value>
-        ß
     </property>
 
     <!--Miscellaneous configuration-->
@@ -729,7 +730,7 @@
 
     <property skipInDoc="true">
         <name>hbase.defaults.for.version</name>
-        <value>@@@VERSION@@@</value>
+        <value>2.1.5</value>
     </property>
 
     <property>

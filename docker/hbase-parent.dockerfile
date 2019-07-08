@@ -8,3 +8,5 @@ ADD ./distro/hbase-$HBASE_VERSION-bin.tar.gz /tmp
 
 RUN mv /tmp/hbase-$HBASE_VERSION /opt/hbase && \
     chmod -R 755 /opt/hbase
+
+COPY ./conf/hbase/hbase-site.xml /opt/hbase/conf/hbase-site.xml

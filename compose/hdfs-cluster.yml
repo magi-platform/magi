@@ -22,6 +22,8 @@ services:
       - "50475:50475"
       - "50010:50010" 
       - "50020:50020"
+    depends_on:
+      - namenode
     networks:
       - magi
 
