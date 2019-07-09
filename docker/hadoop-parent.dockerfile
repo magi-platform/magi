@@ -4,8 +4,6 @@ LABEL maintainer="reynoldsm88@gmail.com"
 
 USER root
 
-RUN mkdir -p /opt/app/{data,tmp}
-
 # ssh stuff for passwordless login between masters and workers, don't really care too much about security ATM
 # 
 # !!! NOTE !!! - Since this environment is currently only to support an easy
@@ -13,6 +11,7 @@ RUN mkdir -p /opt/app/{data,tmp}
 #
 # For ease of use, all platform components use the same SSH keys
 #
+# TODO @michael - make this dependent on local configuration for real deployments
 ADD conf/ssh /root/.ssh
 
 RUN yum install -y openssh-server && \
@@ -28,6 +27,4 @@ RUN yum install -y openssh-server && \
     chmod -R 400 /root/.ssh && \
     cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 
-EXPOSE 22
-
-CMD /usr/sbin/sshd
+RUN mkdir -p /opt/app/{data,tmp}

@@ -6,6 +6,7 @@ services:
     hostname: hbase-master
     image: reynoldsm88/hbase-master:latest
     ports:
+      - "6022:22"
       - "60000:60000"
       - "60010:60010"
       - "2889:2888"
@@ -21,6 +22,7 @@ services:
     hostname: hbase-regionserver
     image: reynoldsm88/hbase-regionserver:latest
     ports:
+      - "6023:22"
       - "60020:60020"
       - "60030:60030"
       - "2890:2888"
@@ -37,7 +39,7 @@ services:
     hostname: namenode
     image: reynoldsm88/hdfs-namenode:latest
     ports:
-      - "22:22"
+      - "6024:22"
       - "9000:9000"
       - "50070:50070"
       - "50470:50470"
@@ -49,7 +51,7 @@ services:
     hostname: datanode-1
     image: reynoldsm88/hdfs-datanode:latest
     ports:
-      - "23:22"
+      - "6025:22"
       - "50075:50075"
       - "50475:50475"
       - "50010:50010" 
