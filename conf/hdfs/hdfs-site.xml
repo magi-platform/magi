@@ -48,11 +48,11 @@
 
 	<property>
 		<name>dfs.namenode.name.dir</name>
-		<value>/etc/hadoop/hdfs/namenode</value>
+		<value>/opt/app/data/namenode</value>
 	</property>
 	<property>
 		<name>dfs.datanode.data.dir</name>
-		<value>/etc/hadoop/hdfs/datanode</value>
+		<value>/opt/app/data/datanode</value>
 	</property>
 
 </configuration>

@@ -1,12 +1,12 @@
-FROM reynoldsm88/hadoop-parent:latest
+FROM reynoldsm88/hdfs-parent:latest
 
 LABEL maintainer="reynoldsm88@gmail.com"
 
-ENV DATA_NODE_DIR /etc/hadoop/hdfs/datanode
+ENV DATA_NODE_DIR /opt/app/data/datanode
 
 RUN mkdir -p $DATA_NODE_DIR
 
 # web ui, https, data transfer, metadata ops
-EXPOSE 50075 50475 50010 50020
+EXPOSE 50075 50475 50010 50020 22
 
-CMD $HADOOP_HOME/bin/hdfs datanode
+ENTRYPOINT /usr/sbin/sshd && /usr/sbin/sshd && $HADOOP_HOME/bin/hdfs datanode

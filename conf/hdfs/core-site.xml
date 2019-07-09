@@ -8,6 +8,6 @@
 	</property>
 	<property>
 		<name>hadoop.tmp.dir</name>
-		<value>/etc/hadoop/hdfs/tmp</value>
+		<value>/opt/app/tmp</value>
 	</property>
 </configuration>

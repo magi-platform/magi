@@ -1,14 +1,12 @@
-FROM reynoldsm88/hadoop-parent:latest
+FROM reynoldsm88/hdfs-parent:latest
 
 LABEL maintainer="reynoldsm88@gmail.com"
 
-USER hadoop
-
-ENV NAME_NODE_DIR /etc/hadoop/hdfs/namenode
+ENV NAME_NODE_DIR /opt/app/data/namenode
 
 RUN mkdir -p $NAME_NODE_DIR
 
 # HDFS client, http, and https ports
-EXPOSE 9000 50070 50470 
+EXPOSE 9000 50070 50470 22
 
-CMD $HADOOP_HOME/bin/hdfs namenode -format -force && $HADOOP_HOME/bin/hdfs namenode
+ENTRYPOINT /usr/sbin/sshd && $HADOOP_HOME/bin/hdfs namenode -format -force && $HADOOP_HOME/bin/hdfs namenode
