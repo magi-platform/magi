@@ -24,4 +24,19 @@ build-hbase:
 	docker build -f docker/hbase-master.dockerfile -t reynoldsm88/hbase-master:latest .
 	docker build -f docker/hbase-regionserver.dockerfile -t reynoldsm88/hbase-regionserver:latest .
 
+push-parent:
+	docker push reynoldsm88/hadoop-parent:latest
+
+push-hdfs:
+	docker push reynoldsm88/hdfs-parent:latest
+	docker push reynoldsm88/hdfs-namenode:latest
+	docker push reynoldsm88/hdfs-datanode:latest
+
+push-hbase:
+	docker push reynoldsm88/hbase-parent:latest
+	docker push reynoldsm88/hbase-master:latest
+	docker push reynoldsm88/hbase-regionserver:latest
+
 build-all: build-parent build-hdfs build-hbase
+
+push-all: build-all push-parent push-hdfs push-hbase
