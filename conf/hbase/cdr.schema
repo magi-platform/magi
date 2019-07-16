@@ -1,0 +1,2 @@
+# This is the base table definition for the CDR HBase repository
+create 'cdr', 'content', 'metadata', 'annotation'
