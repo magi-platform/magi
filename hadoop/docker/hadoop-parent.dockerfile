@@ -12,7 +12,7 @@ USER root
 # For ease of use, all platform components use the same SSH keys
 #
 # TODO @michael - make this dependent on local configuration for real deployments
-ADD conf/ssh /root/.ssh
+ADD ./ssh /root/.ssh
 
 RUN yum install -y openssh-server && \
     yum install -y openssh && \

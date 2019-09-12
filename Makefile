@@ -2,37 +2,31 @@ IMAGE_PREFIX = reynoldsm88/
 IMAGE_NAME = magi
 IMG := $(IMAGE_PREFIX)$(IMAGE_NAME)
 
-info:
-	@echo "Available targets are 'clean', 'clean-all', 'build-parent', 'build-hdfs', 'build-hbase' & 'build-all'"
+prepare:
+	./download.sh
 
-clean:
-	docker images | awk '{print $$3}' | grep -v IMAGE | xargs docker rmi -f
+build-parent: prepare
+	docker build -f hadoop/docker/hadoop-parent.dockerfile -t reynoldsm88/hadoop-parent:latest .
 
-clean-all: clean 
-	docker system prune -f
+build-hdfs: build-parent
+	docker build -f hdfs/docker/hdfs-parent.dockerfile -t reynoldsm88/hdfs-parent:latest .
+	docker build -f hdfs/docker/hdfs-namenode.dockerfile -t reynoldsm88/hdfs-namenode:latest .
+	docker build -f hdfs/docker/hdfs-datanode.dockerfile -t reynoldsm88/hdfs-datanode:latest .
 
-build-parent:
-	docker build -f docker/hadoop-parent.dockerfile -t reynoldsm88/hadoop-parent:latest .
+build-hbase: build-parent
+	docker build -f hbase/docker/hbase-parent.dockerfile -t reynoldsm88/hbase-parent:latest .
+	docker build -f hbase/docker/hbase-master.dockerfile -t reynoldsm88/hbase-master:latest .
+	docker build -f hbase/docker/hbase-regionserver.dockerfile -t reynoldsm88/hbase-regionserver:latest .
 
-build-hdfs:
-	docker build -f docker/hdfs-parent.dockerfile -t reynoldsm88/hdfs-parent:latest .
-	docker build -f docker/hdfs-namenode.dockerfile -t reynoldsm88/hdfs-namenode:latest .
-	docker build -f docker/hdfs-datanode.dockerfile -t reynoldsm88/hdfs-datanode:latest .
-
-build-hbase:
-	docker build -f docker/hbase-parent.dockerfile -t reynoldsm88/hbase-parent:latest .
-	docker build -f docker/hbase-master.dockerfile -t reynoldsm88/hbase-master:latest .
-	docker build -f docker/hbase-regionserver.dockerfile -t reynoldsm88/hbase-regionserver:latest .
-
-push-parent:
+push-parent: build-parent
 	docker push reynoldsm88/hadoop-parent:latest
 
-push-hdfs:
+push-hdfs: build-hdfs
 	docker push reynoldsm88/hdfs-parent:latest
 	docker push reynoldsm88/hdfs-namenode:latest
 	docker push reynoldsm88/hdfs-datanode:latest
 
-push-hbase:
+push-hbase: build-hbase
 	docker push reynoldsm88/hbase-parent:latest
 	docker push reynoldsm88/hbase-master:latest
 	docker push reynoldsm88/hbase-regionserver:latest

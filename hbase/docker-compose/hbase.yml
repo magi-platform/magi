@@ -10,6 +10,7 @@ services:
       - "60000:60000"
       - "60010:60010"
       - "2889:2888"
+      - "8085:8085"
     depends_on:
       - hdfs-namenode
       - hdfs-datanode

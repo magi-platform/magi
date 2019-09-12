@@ -12,5 +12,5 @@ ADD ./distro/hadoop-$HADOOP_VERSION.tar.gz /tmp
 RUN mv /tmp/hadoop-$HADOOP_VERSION $HADOOP_HOME && \
     chmod u+x $HADOOP_HOME/bin/*
 
-COPY conf/hdfs/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
-COPY conf/hdfs/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+COPY hdfs/conf/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
+COPY hdfs/conf/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml

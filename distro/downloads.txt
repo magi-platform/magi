@@ -1,2 +1,0 @@
-https://www-us.apache.org/dist/hbase/2.1.5/hbase-2.1.5-bin.tar.gz
-http://apache.cs.utah.edu/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz
