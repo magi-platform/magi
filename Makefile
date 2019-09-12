@@ -12,17 +12,17 @@ clean-all: clean
 	docker system prune -f
 
 build-parent:
-	docker build -f docker/hadoop-parent.dockerfile -t reynoldsm88/hadoop-parent:latest .
+	docker build -f hadoop/docker/hadoop-parent.dockerfile -t reynoldsm88/hadoop-parent:latest .
 
 build-hdfs:
-	docker build -f docker/hdfs-parent.dockerfile -t reynoldsm88/hdfs-parent:latest .
-	docker build -f docker/hdfs-namenode.dockerfile -t reynoldsm88/hdfs-namenode:latest .
-	docker build -f docker/hdfs-datanode.dockerfile -t reynoldsm88/hdfs-datanode:latest .
+	docker build -f hdfs/docker/hdfs-parent.dockerfile -t reynoldsm88/hdfs-parent:latest .
+	docker build -f hdfs/docker/hdfs-namenode.dockerfile -t reynoldsm88/hdfs-namenode:latest .
+	docker build -f hdfs/docker/hdfs-datanode.dockerfile -t reynoldsm88/hdfs-datanode:latest .
 
 build-hbase:
-	docker build -f docker/hbase-parent.dockerfile -t reynoldsm88/hbase-parent:latest .
-	docker build -f docker/hbase-master.dockerfile -t reynoldsm88/hbase-master:latest .
-	docker build -f docker/hbase-regionserver.dockerfile -t reynoldsm88/hbase-regionserver:latest .
+	docker build -f hbase/docker/hbase-parent.dockerfile -t reynoldsm88/hbase-parent:latest .
+	docker build -f hbase/docker/hbase-master.dockerfile -t reynoldsm88/hbase-master:latest .
+	docker build -f hbase/docker/hbase-regionserver.dockerfile -t reynoldsm88/hbase-regionserver:latest .
 
 push-parent:
 	docker push reynoldsm88/hadoop-parent:latest
