@@ -1,0 +1,12 @@
+language: bash
+
+install: make
+
+services:
+  - docker
+
+branches:
+  - /.*/
+
+script:
+  make build-all
