@@ -3,6 +3,7 @@ LABEL maintainer="michael.reynolds@twosixlabs.com"
 
 ENV HBASE_VERSION 2.1.5
 ENV HBASE_HOME /opt/hbase
+ENV PATH "$PATH:$HBASE_HOME/bin"
 
 ADD ./distro/hbase-$HBASE_VERSION-bin.tar.gz /tmp
 
