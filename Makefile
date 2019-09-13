@@ -5,6 +5,9 @@ IMG := $(IMAGE_PREFIX)$(IMAGE_NAME)
 prepare:
 	./download.sh
 
+clean-data:
+	ls -d data | xargs rm -r
+
 build-parent: prepare
 	docker build -f hadoop/docker/hadoop-parent.dockerfile -t reynoldsm88/hadoop-parent:latest .
 

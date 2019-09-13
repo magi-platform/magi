@@ -9,6 +9,8 @@ services:
       - "9000:9000"
       - "50070:50070"
       - "50470:50470"
+    volumes:
+       - ../../data/namenode:/opt/app/data/namenode
     networks:
       - magi
   
@@ -24,6 +26,8 @@ services:
       - "50020:50020"
     depends_on:
       - hdfs-namenode
+    volumes:
+       - ../../data/datanode:/opt/app/data/datanode
     networks:
       - magi
 
