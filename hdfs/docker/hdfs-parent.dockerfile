@@ -4,6 +4,7 @@ LABEL maintainer="reynoldsm88@gmail.com"
 
 ENV HADOOP_VERSION 2.7.7
 ENV HADOOP_HOME /opt/hadoop
+ENV PATH "$PATH:$HADOOP_HOME/bin"
 
 USER root
 
