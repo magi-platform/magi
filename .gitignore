@@ -1,3 +1,4 @@
 distro/
 data/
 .DS_Store
+*.out
