@@ -21,6 +21,11 @@ build-hbase: build-parent
 	docker build -f hbase/docker/hbase-master.dockerfile -t reynoldsm88/hbase-master:latest .
 	docker build -f hbase/docker/hbase-regionserver.dockerfile -t reynoldsm88/hbase-regionserver:latest .
 
+build-spark: build-parent
+	docker build -f spark/docker/spark-parent.dockerfile -t reynoldsm88/spark-parent:latest .
+	docker build -f spark/docker/spark-master.dockerfile -t reynoldsm88/spark-master:latest .
+	docker build -f spark/docker/spark-worker.dockerfile -t reynoldsm88/spark-worker:latest .
+
 push-parent: build-parent
 	docker push reynoldsm88/hadoop-parent:latest
 
@@ -34,6 +39,11 @@ push-hbase: build-hbase
 	docker push reynoldsm88/hbase-master:latest
 	docker push reynoldsm88/hbase-regionserver:latest
 
-build-all: build-parent build-hdfs build-hbase
+push-spark:
+	docker push reynoldsm88/spark-parent:latest
+	docker push reynoldsm88/spark-master:latest
+	docker push reynoldsm88/spark-worker:latest
 
-push-all: build-all push-parent push-hdfs push-hbase
+build-all: build-parent build-hdfs build-hbase build-spark
+
+push-all: build-all push-parent push-hdfs push-hbase push-spark
