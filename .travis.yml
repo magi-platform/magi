@@ -10,7 +10,7 @@ branches:
 
 jobs:
   include:
-    - script: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - script: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
     - stage: build
       script: make docker-build
       if: branch =~ /.*/
