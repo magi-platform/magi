@@ -12,8 +12,8 @@ jobs:
   include:
     - script: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
     - stage: build
-      script: make docker-build
+      script: make build-alll
       if: branch =~ /.*/
     - stage: push
-      script: make docker-push
+      script: make push-all
       if: branch = master
