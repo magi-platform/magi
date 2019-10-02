@@ -39,7 +39,7 @@ push-hbase: build-hbase
 	docker push reynoldsm88/hbase-master:latest
 	docker push reynoldsm88/hbase-regionserver:latest
 
-push-spark:
+push-spark: build-spark
 	docker push reynoldsm88/spark-parent:latest
 	docker push reynoldsm88/spark-master:latest
 	docker push reynoldsm88/spark-worker:latest
