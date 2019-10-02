@@ -8,5 +8,12 @@ services:
 branches:
   - /.*/
 
-script:
-  make build-all
+jobs:
+  include:
+    - script: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+    - stage: build
+      script: make build-all
+      if: branch =~ /.*/
+    - stage: push
+      script: make push-all
+      if: branch = master
