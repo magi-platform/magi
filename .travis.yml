@@ -5,15 +5,17 @@ install: make
 services:
   - docker
 
-branches:
-  - /.*/
+before_script:
+  echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
-jobs:
-  include:
-    - script: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-    - stage: build
-      script: make build-all
-      if: branch =~ /.*/
-    - stage: push
-      script: make push-all
-      if: branch = master
+build:
+  script: make build-all
+  on:
+    tags: true
+    all_branches: true
+
+deploy:
+  script: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+  script: make push-all
+  on:
+    branch: master
