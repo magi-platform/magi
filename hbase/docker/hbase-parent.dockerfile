@@ -4,6 +4,7 @@ LABEL maintainer="michael.reynolds@twosixlabs.com"
 ENV HBASE_VERSION 2.1.5
 ENV HBASE_HOME /opt/hbase
 ENV PATH "$PATH:$HBASE_HOME/bin"
+ENV HBASE_OPTS "$HBASE_OPTS $GLOBAL_JAVA_OPTS"
 
 ADD ./distro/hbase-$HBASE_VERSION-bin.tar.gz /tmp
 
