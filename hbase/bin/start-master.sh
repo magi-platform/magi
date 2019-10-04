@@ -8,7 +8,7 @@ if [ -z "$SCHEMA_PATH" ]; then
     echo "no schema to import"
 else
     "importing schema instructions from $SCHEMA_PATH"
-    sleep 20
+    sleep 25
     /opt/hbase/bin/hbase shell -n $SCHEMA_PATH
 fi
 
