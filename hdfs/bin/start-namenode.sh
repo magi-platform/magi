@@ -1,15 +1,13 @@
 #!/bin/bash
 /usr/sbin/sshd && 
 
-IS_FORMATTED=$(find $HADOOP_NAMENODE_DIR -name VERSION)
-
-echo "found existing hdfs directory : $IS_FORMATTED"
+IS_FORMATTED=$(find $NAME_NODE_DIR -name VERSION)
 
 if [ -z $IS_FORMATTED ]; then
     echo "Formatting a new name node"
     $HADOOP_HOME/bin/hdfs namenode -format -force
 else
-    echo "Recovering namenode"
+    echo "Recovering namenode from : $IS_FORMATTED"
 fi    
 
 $HADOOP_HOME/bin/hdfs namenode
