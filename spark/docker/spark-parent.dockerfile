@@ -13,3 +13,5 @@ COPY ./spark/hdfs-conf /tmp/spark
 
 RUN mv /tmp/spark /opt && \
     chmod -R u+x /opt/spark/sbin
+
+ENV PATH "$PATH:/opt/spark/bin"
