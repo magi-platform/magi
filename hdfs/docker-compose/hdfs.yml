@@ -1,8 +1,8 @@
-version: "3"
+version: "3.7"
 services:
   hdfs-namenode:
-    container_name: namenode
-    hostname: namenode
+    container_name: hdfs-namenode
+    hostname: hdfs-namenode
     image: reynoldsm88/hdfs-namenode:latest
     ports:
       - "22:22"
@@ -14,9 +14,9 @@ services:
     networks:
       - magi
   
-  hdfs-datanode:
-    container_name: datanode-1
-    hostname: datanode-1
+  hdfs-datanode-1:
+    container_name: hdfs-datanode-1
+    hostname: hdfs-datanode-1
     image: reynoldsm88/hdfs-datanode:latest
     ports:
       - "23:22"

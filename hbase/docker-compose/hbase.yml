@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 services:
 
   hbase-master:
@@ -13,14 +13,14 @@ services:
       - "8085:8085"
     depends_on:
       - hdfs-namenode
-      - hdfs-datanode
+      - hdfs-datanode-1
       - zookeeper
     networks:
       - magi
 
-  hbase-regionserver:
-    container_name: hbase-regionserver
-    hostname: hbase-regionserver
+  hbase-regionserver-1:
+    container_name: hbase-regionserver-1
+    hostname: hbase-regionserver-1
     image: reynoldsm88/hbase-regionserver:latest
     ports:
       - "6023:22"
@@ -29,18 +29,17 @@ services:
       - "2890:2888"
     depends_on:
       - hdfs-namenode
-      - hdfs-datanode
+      - hdfs-datanode-1
       - hbase-master
       - zookeeper
     networks:
       - magi  
 
   hdfs-namenode:
-    container_name: namenode
-    hostname: namenode
+    container_name: hdfs-namenode
+    hostname: hdfs-namenode
     image: reynoldsm88/hdfs-namenode:latest
     ports:
-      - "6024:22"
       - "9000:9000"
       - "50070:50070"
       - "50470:50470"
@@ -49,12 +48,11 @@ services:
     networks:
       - magi
 
-  hdfs-datanode:
-    container_name: datanode-1
-    hostname: datanode-1
+  hdfs-datanode-1:
+    container_name: hdfs-datanode-1
+    hostname: hdfs-datanode-1
     image: reynoldsm88/hdfs-datanode:latest
     ports:
-      - "6025:22"
       - "50075:50075"
       - "50475:50475"
       - "50010:50010" 

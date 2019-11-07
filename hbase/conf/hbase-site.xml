@@ -8,7 +8,7 @@
 
     <property>
         <name>hbase.rootdir</name>
-        <value>hdfs://namenode:9000/hbase</value>
+        <value>hdfs://hdfs-namenode:9000/hbase</value>
     </property>
 
     <property>
