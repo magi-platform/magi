@@ -14,6 +14,7 @@ services:
     depends_on:
       - hdfs-namenode
       - hdfs-datanode-1
+      - hdfs-datanode-2
       - zookeeper
     networks:
       - magi
@@ -30,10 +31,29 @@ services:
     depends_on:
       - hdfs-namenode
       - hdfs-datanode-1
+      - hdfs-datanode-2
       - hbase-master
       - zookeeper
     networks:
       - magi  
+
+  hbase-regionserver-2:
+    container_name: hbase-regionserver-2
+    hostname: hbase-regionserver-2
+    image: reynoldsm88/hbase-regionserver:latest
+    ports:
+      - "6024:22"
+      - "60021:60020"
+      - "60031:60030"
+      - "2891:2888"
+    depends_on:
+      - hdfs-namenode
+      - hdfs-datanode-1
+      - hdfs-datanode-2
+      - hbase-master
+      - zookeeper
+    networks:
+      - magi
 
   hdfs-namenode:
     container_name: hdfs-namenode
@@ -42,9 +62,8 @@ services:
     ports:
       - "9000:9000"
       - "50070:50070"
-      - "50470:50470"
     volumes:
-       - ../../data/namenode:/opt/app/data/namenode
+       - ../../data/hdfs-namenode:/opt/app/data/namenode
     networks:
       - magi
 
@@ -57,8 +76,26 @@ services:
       - "50475:50475"
       - "50010:50010" 
       - "50020:50020"
+    depends_on:
+      - hdfs-namenode
     volumes:
-       - ../../data/datanode:/opt/app/data/datanode
+       - ../../data/hdfs-datanode-1:/opt/app/data/datanode
+    networks:
+      - magi
+
+  hdfs-datanode-2:
+    container_name: hdfs-datanode-2
+    hostname: hdfs-datanode-2
+    image: reynoldsm88/hdfs-datanode:latest
+    ports:
+      - "50076:50075"
+      - "50476:50475"
+      - "50011:50010"
+      - "50021:50020"
+    depends_on:
+      - hdfs-namenode
+    volumes:
+       - ../../data/hdfs-datanode-2:/opt/app/data/datanode
     networks:
       - magi
 
@@ -75,8 +112,8 @@ services:
       ZOO_PORT: 2181
       ZOO_SERVERS: server.1=zookeeper:2888:3888
     volumes:
-      - ../../data/zookeeper-data:/data
-      - ../../data/zookeeper-datalog:/datalog
+      - ../../data/zookeeper-1-data:/data
+      - ../../data/zookeeper-1-datalog:/datalog
     networks:
       - magi
 
