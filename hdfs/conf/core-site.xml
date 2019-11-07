@@ -2,12 +2,17 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
 <configuration>
-	<property>
-		<name>fs.defaultFS</name>
-		<value>hdfs://hdfs-namenode:9000</value>
-	</property>
-	<property>
-		<name>hadoop.tmp.dir</name>
-		<value>/opt/app/tmp</value>
-	</property>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://hdfs-namenode:9000</value>
+    </property>
+    <property>
+        <name>fs.default.name</name>
+        <value>hdfs://hdfs-namenode:9000</value>
+        <final>true</final>
+    </property>
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/opt/app/tmp</value>
+    </property>
 </configuration>
