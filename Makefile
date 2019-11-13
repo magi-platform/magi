@@ -1,28 +1,27 @@
 IMAGE_PREFIX = reynoldsm88
 
-
 build-parent:
 	./build-tools --hadoop
 	docker build --pull -f hadoop/docker/hadoop-parent.dockerfile -t $(IMAGE_PREFIX)/hadoop-parent:latest .
 
 build-hdfs: build-parent
-	docker build --pull -f hdfs/docker/hdfs-parent.dockerfile -t $(IMAGE_PREFIX)/hdfs-parent:latest .
-	docker build --pull -f hdfs/docker/hdfs-namenode.dockerfile -t $(IMAGE_PREFIX)/hdfs-namenode:latest .
-	docker build --pull -f hdfs/docker/hdfs-datanode.dockerfile -t $(IMAGE_PREFIX)/hdfs-datanode:latest .
+	docker build  -f hdfs/docker/hdfs-parent.dockerfile -t $(IMAGE_PREFIX)/hdfs-parent:latest .
+	docker build  -f hdfs/docker/hdfs-namenode.dockerfile -t $(IMAGE_PREFIX)/hdfs-namenode:latest .
+	docker build  -f hdfs/docker/hdfs-datanode.dockerfile -t $(IMAGE_PREFIX)/hdfs-datanode:latest .
 	./build-tools --clean
 
 build-hbase:
 	./build-tools --hbase
-	docker build --pull -f hbase/docker/hbase-parent.dockerfile -t $(IMAGE_PREFIX)/hbase-parent:latest .
-	docker build --pull -f hbase/docker/hbase-master.dockerfile -t $(IMAGE_PREFIX)/hbase-master:latest .
-	docker build --pull -f hbase/docker/hbase-regionserver.dockerfile -t $(IMAGE_PREFIX)/hbase-regionserver:latest .
+	docker build -f hbase/docker/hbase-parent.dockerfile -t $(IMAGE_PREFIX)/hbase-parent:latest .
+	docker build -f hbase/docker/hbase-master.dockerfile -t $(IMAGE_PREFIX)/hbase-master:latest .
+	docker build -f hbase/docker/hbase-regionserver.dockerfile -t $(IMAGE_PREFIX)/hbase-regionserver:latest .
 	./build-tools --clean
 
-build-spark: build-parent
+build-spark:
 	./build-tools --spark
-	docker build --pull -f spark/docker/spark-parent.dockerfile -t $(IMAGE_PREFIX)/spark-parent:latest .
-	docker build --pull -f spark/docker/spark-master.dockerfile -t $(IMAGE_PREFIX)/spark-master:latest .
-	docker build --pull -f spark/docker/spark-worker.dockerfile -t $(IMAGE_PREFIX)/spark-worker:latest .
+	docker build -f spark/docker/spark-parent.dockerfile -t $(IMAGE_PREFIX)/spark-parent:latest .
+	docker build -f spark/docker/spark-master.dockerfile -t $(IMAGE_PREFIX)/spark-master:latest .
+	docker build -f spark/docker/spark-worker.dockerfile -t $(IMAGE_PREFIX)/spark-worker:latest .
 	./build-tools --clean
 
 push-parent:
