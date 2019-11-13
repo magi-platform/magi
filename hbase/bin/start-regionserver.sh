@@ -1,6 +1,5 @@
 #!/bin/bash
-echo "Starting HBase ReionServer Thrift server"
-/opt/hbase/bin/hbase thrift start &
+/usr/sbin/sshd &&
 
 echo "Starting HBase RegionServer REST server"
 /opt/hbase/bin/hbase rest start &
