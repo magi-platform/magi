@@ -1,48 +1,46 @@
-IMAGE_PREFIX = reynoldsm88/
-IMAGE_NAME = magi
-IMG := $(IMAGE_PREFIX)$(IMAGE_NAME)
+IMAGE_PREFIX = reynoldsm88
 
 build-parent:
 	./build-tools --hadoop
-	docker build -f hadoop/docker/hadoop-parent.dockerfile -t reynoldsm88/hadoop-parent:latest .
+	docker build --pull -f hadoop/docker/hadoop-parent.dockerfile -t $(IMAGE_PREFIX)/hadoop-parent:latest .
 
 build-hdfs: build-parent
-	docker build -f hdfs/docker/hdfs-parent.dockerfile -t reynoldsm88/hdfs-parent:latest .
-	docker build -f hdfs/docker/hdfs-namenode.dockerfile -t reynoldsm88/hdfs-namenode:latest .
-	docker build -f hdfs/docker/hdfs-datanode.dockerfile -t reynoldsm88/hdfs-datanode:latest .
+	docker build  -f hdfs/docker/hdfs-parent.dockerfile -t $(IMAGE_PREFIX)/hdfs-parent:latest .
+	docker build  -f hdfs/docker/hdfs-namenode.dockerfile -t $(IMAGE_PREFIX)/hdfs-namenode:latest .
+	docker build  -f hdfs/docker/hdfs-datanode.dockerfile -t $(IMAGE_PREFIX)/hdfs-datanode:latest .
 	./build-tools --clean
 
 build-hbase:
 	./build-tools --hbase
-	docker build -f hbase/docker/hbase-parent.dockerfile -t reynoldsm88/hbase-parent:latest .
-	docker build -f hbase/docker/hbase-master.dockerfile -t reynoldsm88/hbase-master:latest .
-	docker build -f hbase/docker/hbase-regionserver.dockerfile -t reynoldsm88/hbase-regionserver:latest .
+	docker build -f hbase/docker/hbase-parent.dockerfile -t $(IMAGE_PREFIX)/hbase-parent:latest .
+	docker build -f hbase/docker/hbase-master.dockerfile -t $(IMAGE_PREFIX)/hbase-master:latest .
+	docker build -f hbase/docker/hbase-regionserver.dockerfile -t $(IMAGE_PREFIX)/hbase-regionserver:latest .
 	./build-tools --clean
 
-build-spark: build-parent
+build-spark:
 	./build-tools --spark
-	docker build -f spark/docker/spark-parent.dockerfile -t reynoldsm88/spark-parent:latest .
-	docker build -f spark/docker/spark-master.dockerfile -t reynoldsm88/spark-master:latest .
-	docker build -f spark/docker/spark-worker.dockerfile -t reynoldsm88/spark-worker:latest .
+	docker build -f spark/docker/spark-parent.dockerfile -t $(IMAGE_PREFIX)/spark-parent:latest .
+	docker build -f spark/docker/spark-master.dockerfile -t $(IMAGE_PREFIX)/spark-master:latest .
+	docker build -f spark/docker/spark-worker.dockerfile -t $(IMAGE_PREFIX)/spark-worker:latest .
 	./build-tools --clean
 
 push-parent:
-	docker push reynoldsm88/hadoop-parent:latest
+	docker push $(IMAGE_PREFIX)/hadoop-parent:latest
 
 push-hdfs:
-	docker push reynoldsm88/hdfs-parent:latest
-	docker push reynoldsm88/hdfs-namenode:latest
-	docker push reynoldsm88/hdfs-datanode:latest
+	docker push $(IMAGE_PREFIX)/hdfs-parent:latest
+	docker push $(IMAGE_PREFIX)/hdfs-namenode:latest
+	docker push $(IMAGE_PREFIX)/hdfs-datanode:latest
 
 push-hbase:
-	docker push reynoldsm88/hbase-parent:latest
-	docker push reynoldsm88/hbase-master:latest
-	docker push reynoldsm88/hbase-regionserver:latest
+	docker push $(IMAGE_PREFIX)/hbase-parent:latest
+	docker push $(IMAGE_PREFIX)/hbase-master:latest
+	docker push $(IMAGE_PREFIX)/hbase-regionserver:latest
 
 push-spark:
-	docker push reynoldsm88/spark-parent:latest
-	docker push reynoldsm88/spark-master:latest
-	docker push reynoldsm88/spark-worker:latest
+	docker push $(IMAGE_PREFIX)/spark-parent:latest
+	docker push $(IMAGE_PREFIX)/spark-master:latest
+	docker push $(IMAGE_PREFIX)/spark-worker:latest
 
 build-all: build-parent build-hdfs build-hbase build-spark
 

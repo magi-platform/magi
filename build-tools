@@ -9,7 +9,7 @@ function download_hadoop {
         echo "downloading hadoop-2.7.7"
         # cd $ROOT_DIR/distro
         curl -L -o distro/hadoop-2.7.7.tar.gz https://archive.apache.org/dist/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz
-    fi    
+    fi
 }
 
 function download_hbase {

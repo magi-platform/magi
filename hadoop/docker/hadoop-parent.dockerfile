@@ -26,7 +26,3 @@ RUN yum install -y openssh-server && \
     chmod -R 400 /etc/ssh && \
     chmod -R 400 /root/.ssh && \
     cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
-
-RUN mkdir -p /opt/app/{data,tmp}
-
-VOLUME /opt/app/data
