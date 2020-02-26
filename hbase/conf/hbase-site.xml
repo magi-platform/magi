@@ -267,7 +267,7 @@
 
     <property>
         <name>hbase.client.pause</name>
-        <value>100</value>
+        <value>2000</value>
     </property>
 
     <property>
@@ -277,7 +277,7 @@
 
     <property>
         <name>hbase.client.retries.number</name>
-        <value>15</value>
+        <value>30</value>
     </property>
 
     <property>
