@@ -1,7 +1,17 @@
 version: "3.7"
+
+x-defaults: &defaults
+  restart: unless-stopped
+  logging:
+    driver: json-file
+    options:
+      max-size: '1m'
+      max-file: '5'
+
 services:
 
   hbase-master:
+    <<: *defaults
     container_name: hbase-master
     hostname: hbase-master
     image: reynoldsm88/hbase-master:latest
@@ -11,6 +21,11 @@ services:
       - "60010:60010"
       - "2889:2888"
       - "8085:8085"
+    healthcheck:
+      test: [ "CMD", "/opt/hbase/bin/healtcheck-master.sh" ]
+      interval: 20s
+      start_period: 30s
+      retries: 5
     depends_on:
       - hdfs-namenode
       - hdfs-datanode-1
@@ -20,6 +35,7 @@ services:
       - magi
 
   hbase-regionserver-1:
+    <<: *defaults
     container_name: hbase-regionserver-1
     hostname: hbase-regionserver-1
     image: reynoldsm88/hbase-regionserver:latest
@@ -28,6 +44,10 @@ services:
       - "60020:60020"
       - "60030:60030"
       - "2890:2888"
+    healthcheck:
+      test: [ "CMD", "/opt/hbase/bin/healtcheck-regionserver.sh" ]
+      interval: 20s
+      start_period: 30s
     depends_on:
       - hdfs-namenode
       - hdfs-datanode-1
@@ -38,6 +58,7 @@ services:
       - magi  
 
   hbase-regionserver-2:
+    <<: *defaults
     container_name: hbase-regionserver-2
     hostname: hbase-regionserver-2
     image: reynoldsm88/hbase-regionserver:latest
@@ -46,6 +67,10 @@ services:
       - "60021:60020"
       - "60031:60030"
       - "2891:2888"
+    healthcheck:
+      test: [ "CMD", "/opt/hbase/bin/healtcheck-regionserver.sh" ]
+      interval: 20s
+      start_period: 30s
     depends_on:
       - hdfs-namenode
       - hdfs-datanode-1
@@ -56,6 +81,7 @@ services:
       - magi
 
   hdfs-namenode:
+    <<: *defaults
     container_name: hdfs-namenode
     hostname: hdfs-namenode
     image: reynoldsm88/hdfs-namenode:latest
@@ -68,6 +94,7 @@ services:
       - magi
 
   hdfs-datanode-1:
+    <<: *defaults
     container_name: hdfs-datanode-1
     hostname: hdfs-datanode-1
     image: reynoldsm88/hdfs-datanode:latest
@@ -84,6 +111,7 @@ services:
       - magi
 
   hdfs-datanode-2:
+    <<: *defaults
     container_name: hdfs-datanode-2
     hostname: hdfs-datanode-2
     image: reynoldsm88/hdfs-datanode:latest
@@ -100,6 +128,7 @@ services:
       - magi
 
   zookeeper:
+    <<: *defaults
     container_name: zookeeper
     hostname: zookeeper
     image: zookeeper:3.4.9

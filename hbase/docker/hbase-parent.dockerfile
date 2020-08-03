@@ -14,3 +14,4 @@ RUN mv /tmp/hbase-$HBASE_VERSION /opt/hbase && \
 
 COPY ./hbase/conf/hbase-site.xml /opt/hbase/conf/hbase-site.xml
 COPY ./hbase/conf/log4j.properties /opt/hbase/conf/log4j.properties
+COPY ./hbase/bin/* /opt/hbase/bin/
