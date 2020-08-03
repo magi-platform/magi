@@ -1,10 +1,8 @@
 IMAGE_PREFIX = reynoldsm88
 
-build-parent:
+build-hdfs: build-parent
 	./build-tools --hadoop
 	docker build --pull -f hadoop/docker/hadoop-parent.dockerfile -t $(IMAGE_PREFIX)/hadoop-parent:latest .
-
-build-hdfs: build-parent
 	docker build  -f hdfs/docker/hdfs-parent.dockerfile -t $(IMAGE_PREFIX)/hdfs-parent:latest .
 	docker build  -f hdfs/docker/hdfs-namenode.dockerfile -t $(IMAGE_PREFIX)/hdfs-namenode:latest .
 	docker build  -f hdfs/docker/hdfs-datanode.dockerfile -t $(IMAGE_PREFIX)/hdfs-datanode:latest .
