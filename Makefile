@@ -1,10 +1,8 @@
 IMAGE_PREFIX = reynoldsm88
 
-build-parent:
+build-hdfs:
 	./build-tools --hadoop
 	docker build --pull -f hadoop/docker/hadoop-parent.dockerfile -t $(IMAGE_PREFIX)/hadoop-parent:latest .
-
-build-hdfs: build-parent
 	docker build  -f hdfs/docker/hdfs-parent.dockerfile -t $(IMAGE_PREFIX)/hdfs-parent:latest .
 	docker build  -f hdfs/docker/hdfs-namenode.dockerfile -t $(IMAGE_PREFIX)/hdfs-namenode:latest .
 	docker build  -f hdfs/docker/hdfs-datanode.dockerfile -t $(IMAGE_PREFIX)/hdfs-datanode:latest .
@@ -24,10 +22,8 @@ build-spark:
 	docker build -f spark/docker/spark-worker.dockerfile -t $(IMAGE_PREFIX)/spark-worker:latest .
 	./build-tools --clean
 
-push-parent:
-	docker push $(IMAGE_PREFIX)/hadoop-parent:latest
-
 push-hdfs:
+	docker push $(IMAGE_PREFIX)/hadoop-parent:latest
 	docker push $(IMAGE_PREFIX)/hdfs-parent:latest
 	docker push $(IMAGE_PREFIX)/hdfs-namenode:latest
 	docker push $(IMAGE_PREFIX)/hdfs-datanode:latest
@@ -42,7 +38,7 @@ push-spark:
 	docker push $(IMAGE_PREFIX)/spark-master:latest
 	docker push $(IMAGE_PREFIX)/spark-worker:latest
 
-build-all: build-parent build-hdfs build-hbase build-spark
+build-all: build-hdfs build-hbase build-spark
 
-push-all: build-all push-parent push-hdfs push-hbase push-spark
+push-all: build-all push-hdfs push-hbase push-spark
 	./build-tools --clean

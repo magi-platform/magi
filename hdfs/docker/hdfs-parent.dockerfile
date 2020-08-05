@@ -16,5 +16,6 @@ RUN mv /tmp/hadoop-$HADOOP_VERSION $HADOOP_HOME && \
 
 COPY hdfs/conf/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
 COPY hdfs/conf/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+COPY hdfs/bin/* $HADOOP_HOME/bin/
 
 CMD /bin/bash

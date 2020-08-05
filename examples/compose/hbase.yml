@@ -88,6 +88,11 @@ services:
     ports:
       - "9000:9000"
       - "50070:50070"
+    healthcheck:
+      test: [ "CMD", "/opt/hadoop/bin/healtcheck-namenode.sh" ]
+      interval: 20s
+      start_period: 30s
+      retries: 5
     volumes:
        - ../../data/hdfs-namenode:/opt/app/data/namenode
     networks:
@@ -103,6 +108,11 @@ services:
       - "50475:50475"
       - "50010:50010" 
       - "50020:50020"
+    healthcheck:
+      test: [ "CMD", "/opt/hadoop/bin/healtcheck-datanode.sh" ]
+      interval: 20s
+      start_period: 30s
+      retries: 5
     depends_on:
       - hdfs-namenode
     volumes:
@@ -120,6 +130,11 @@ services:
       - "50476:50475"
       - "50011:50010"
       - "50021:50020"
+    healthcheck:
+      test: [ "CMD", "/opt/hadoop/bin/healtcheck-datanode.sh" ]
+      interval: 20s
+      start_period: 30s
+      retries: 5
     depends_on:
       - hdfs-namenode
     volumes:

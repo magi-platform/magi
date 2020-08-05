@@ -1,18 +1,34 @@
 version: "3.7"
+
+x-defaults: &defaults
+  restart: unless-stopped
+  logging:
+    driver: json-file
+    options:
+      max-size: '1m'
+      max-file: '5'
+
 services:
   hdfs-namenode:
+    <<: *defaults
     container_name: hdfs-namenode
     hostname: hdfs-namenode
     image: reynoldsm88/hdfs-namenode:latest
     ports:
       - "9000:9000"
       - "50070:50070"
+    healthcheck:
+      test: [ "CMD", "/opt/hadoop/bin/healtcheck-namenode.sh" ]
+      interval: 20s
+      start_period: 30s
+      retries: 5
     volumes:
        - ../../data/hdfs-namenode:/opt/app/data/namenode
     networks:
       - magi
   
   hdfs-datanode-1:
+    <<: *defaults
     container_name: hdfs-datanode-1
     hostname: hdfs-datanode-1
     image: reynoldsm88/hdfs-datanode:latest
@@ -21,6 +37,11 @@ services:
       - "50475:50475"
       - "50010:50010" 
       - "50020:50020"
+    healthcheck:
+      test: [ "CMD", "/opt/hadoop/bin/healtcheck-datanode.sh" ]
+      interval: 20s
+      start_period: 30s
+      retries: 5
     depends_on:
       - hdfs-namenode
     volumes:
@@ -29,6 +50,7 @@ services:
       - magi
 
   hdfs-datanode-2:
+    <<: *defaults
     container_name: hdfs-datanode-2
     hostname: hdfs-datanode-2
     image: reynoldsm88/hdfs-datanode:latest
@@ -37,6 +59,11 @@ services:
       - "50476:50475"
       - "50011:50010"
       - "50021:50020"
+    healthcheck:
+      test: [ "CMD", "/opt/hadoop/bin/healtcheck-datanode.sh" ]
+      interval: 20s
+      start_period: 30s
+      retries: 5
     depends_on:
       - hdfs-namenode
     volumes:
