@@ -1,4 +1,4 @@
-IMAGE_PREFIX = reynoldsm88
+IMAGE_PREFIX = magiplatform
 
 build-hdfs:
 	./build-tools --hadoop
