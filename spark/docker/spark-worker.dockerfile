@@ -1,4 +1,4 @@
-FROM reynoldsm88/spark-parent:latest
+FROM magiplatform/spark-parent:latest
 
 EXPOSE 7078 8081
 

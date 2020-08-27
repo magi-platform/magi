@@ -1,4 +1,4 @@
-FROM reynoldsm88/hdfs-parent:latest
+FROM magiplatform/hdfs-parent:latest
 
 LABEL maintainer="reynoldsm88@gmail.com"
 

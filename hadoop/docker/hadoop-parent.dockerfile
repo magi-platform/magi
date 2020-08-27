@@ -1,4 +1,4 @@
-FROM reynoldsm88/centos-jdk:latest
+FROM magiplatform/centos-jdk:latest
 
 LABEL maintainer="reynoldsm88@gmail.com"
 

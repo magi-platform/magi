@@ -1,4 +1,4 @@
-FROM reynoldsm88/hadoop-parent:latest
+FROM magiplatform/hadoop-parent:latest
 
 ENV SPARK_VERSION 2.4.4
 ENV HADOOP_VERSION 2.7
