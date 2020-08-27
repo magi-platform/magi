@@ -1,0 +1,16 @@
+name: build-only
+on:
+  push:
+    branches:
+      - !master
+  pull_request:
+
+jobs:
+  build-only:
+    name: build-only
+    runs-on: ubuntu-latest
+    container: magiplatform/image-builder:latest
+    steps:
+      - run:
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          make build-all
