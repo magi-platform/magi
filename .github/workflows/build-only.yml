@@ -1,0 +1,14 @@
+name: build-only
+on:
+  pull_request:
+
+jobs:
+  build-only:
+    name: build-only
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker ps -a
+      - run: sudo apt-get install make
+      - run: make -version
+      - run: make build-all
