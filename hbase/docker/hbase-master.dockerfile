@@ -1,4 +1,4 @@
-FROM reynoldsm88/hbase-parent:latest
+FROM magiplatform/hbase-parent:latest
 LABEL maintainer="michael.reynolds@twosixlabs.com"
 
 ENV SCHEMA_PATH ""

@@ -13,7 +13,7 @@ services:
     <<: *defaults
     container_name: hdfs-namenode
     hostname: hdfs-namenode
-    image: reynoldsm88/hdfs-namenode:latest
+    image: magiplatform/hdfs-namenode:latest
     ports:
       - "9000:9000"
       - "50070:50070"
@@ -31,7 +31,7 @@ services:
     <<: *defaults
     container_name: hdfs-datanode-1
     hostname: hdfs-datanode-1
-    image: reynoldsm88/hdfs-datanode:latest
+    image: magiplatform/hdfs-datanode:latest
     ports:
       - "50075:50075"
       - "50475:50475"
@@ -53,7 +53,7 @@ services:
     <<: *defaults
     container_name: hdfs-datanode-2
     hostname: hdfs-datanode-2
-    image: reynoldsm88/hdfs-datanode:latest
+    image: magiplatform/hdfs-datanode:latest
     ports:
       - "50076:50075"
       - "50476:50475"
