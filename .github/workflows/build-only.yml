@@ -6,8 +6,9 @@ jobs:
   build-only:
     name: build-only
     runs-on: ubuntu-latest
-    container: magiplatform/image-builder:latest
     steps:
+      - uses: docker://magiplatform/image-builder:latest
+      - uses: actions/checkout@v2
       - run:
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin && \ 
           make build-all
