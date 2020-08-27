@@ -7,7 +7,7 @@ jobs:
     name: build-only
     runs-on: ubuntu-latest
     steps:
-      - uses: docker://magiplatform/image-builder:latest
       - uses: actions/checkout@v2
-      - run:
-          uname -a && echo $PATH
+      - uses: docker://magiplatform/image-builder:latest
+      with:
+        entrypoint: make build-all
