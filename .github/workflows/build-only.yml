@@ -10,5 +10,5 @@ jobs:
       - uses: actions/checkout@v2
       - run: docker ps -a
       - run: sudo apt-get install make
-      - run: cat Makefile
-
+      - run: make -version
+      - run: make build-all
