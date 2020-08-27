@@ -8,6 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt-get install --assume-yes make
-      - run: sudo apt-get install --assume-yes docker
+      - run: sudo apt-get install --assume-yes make docker
       - run: make build-all
