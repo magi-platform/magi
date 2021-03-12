@@ -24,7 +24,7 @@ function download_hbase {
 function download_spark {
     HAS_SPARK=$(ls $ROOT_DIR/distro | grep spark)
     if [ -z $HAS_SPARK ]; then
-        echo "downloading spark-2.4.4"
+        echo "downloading spark-3.1.1"
         cd $ROOT_DIR/distro
         curl -L -O https://mirrors.ocf.berkeley.edu/apache/spark/spark-3.1.1/spark-3.1.1-bin-hadoop2.7.tgz
     fi
