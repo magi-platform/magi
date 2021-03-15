@@ -1,6 +1,6 @@
 FROM magiplatform/hadoop-parent:latest
 
-ENV SPARK_VERSION 3.1.1
+ENV SPARK_VERSION 2.4.7
 ENV HADOOP_VERSION 2.7
 ENV SPARK_MASTER_HOST "spark-master"
 ENV SPARK_HOME /opt/spark

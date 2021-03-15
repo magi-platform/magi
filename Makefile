@@ -17,9 +17,9 @@ build-hbase:
 
 build-spark:
 	./build-tools --spark
-	docker build -f spark/docker/spark-parent.dockerfile -t $(IMAGE_PREFIX)/spark-parent:latest .
-	docker build -f spark/docker/spark-master.dockerfile -t $(IMAGE_PREFIX)/spark-master:latest .
-	docker build -f spark/docker/spark-worker.dockerfile -t $(IMAGE_PREFIX)/spark-worker:latest .
+	docker build -f spark/docker/spark-parent.dockerfile -t $(IMAGE_PREFIX)/spark-parent:2.4.7 .
+	docker build -f spark/docker/spark-master.dockerfile -t $(IMAGE_PREFIX)/spark-master:2.4.7 .
+	docker build -f spark/docker/spark-worker.dockerfile -t $(IMAGE_PREFIX)/spark-worker:2.4.7 .
 	./build-tools --clean
 
 push-hdfs:
@@ -34,9 +34,9 @@ push-hbase:
 	docker push $(IMAGE_PREFIX)/hbase-regionserver:latest
 
 push-spark:
-	docker push $(IMAGE_PREFIX)/spark-parent:latest
-	docker push $(IMAGE_PREFIX)/spark-master:latest
-	docker push $(IMAGE_PREFIX)/spark-worker:latest
+	docker push $(IMAGE_PREFIX)/spark-parent:2.4.7
+	docker push $(IMAGE_PREFIX)/spark-master:2.4.7
+	docker push $(IMAGE_PREFIX)/spark-worker:2.4.7
 
 build-all: build-hdfs build-hbase build-spark
 
