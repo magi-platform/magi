@@ -1,4 +1,4 @@
-FROM magiplatform/spark-parent:2.4.7
+FROM magiplatform/spark-parent:3.1.2
 
 LABEL maintainer="reynoldsm88@gmail.com"
 
