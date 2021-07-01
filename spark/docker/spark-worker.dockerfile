@@ -1,4 +1,4 @@
-FROM magiplatform/spark-parent:latest
+FROM magiplatform/spark-parent:3.1.2
 
 EXPOSE 7078 8081
 
